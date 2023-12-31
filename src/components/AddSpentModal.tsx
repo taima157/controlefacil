@@ -23,11 +23,13 @@ export default function AddSpentModal({ visible, toggleModal }: PropsType) {
   const [initialInstallmentDate, setInitialInstallmentDate] =
     useState<string>("");
   const [numberOfInstallment, setNumberOfInstallment] = useState<number>(0);
+  const [priceValue, setPriceValue] = useState<string>("");
 
   function resetInputs() {
     setSpent(initialSpentValues);
     setInitialInstallmentDate("");
     setNumberOfInstallment(0);
+    setPriceValue("0");
   }
 
   function handleToggleModal() {
@@ -37,6 +39,7 @@ export default function AddSpentModal({ visible, toggleModal }: PropsType) {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    spent.price = Number(priceValue);
 
     if (spent.type === "debit") {
       addSpent(spent);
@@ -86,15 +89,12 @@ export default function AddSpentModal({ visible, toggleModal }: PropsType) {
                   type="number"
                   className="w-full p-2 rounded-sm shadow-sm outline-none"
                   id="price"
-                  placeholder="Ex: R$ 99,99"
-                  value={String(spent.price)}
-                  onChange={(e) => {
-                    if (Number(e.target.value) >= 0) {
-                      setSpent({ ...spent, price: Number(e.target.value) });
-                    }
-                  }}
+                  placeholder="Ex: 99.99"
+                  value={priceValue}
+                  onChange={(e) => setPriceValue(e.target.value)}
                   min={1}
                   step={0.01}
+                  autoComplete="off"
                   required
                 />
               </div>
