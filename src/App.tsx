@@ -41,10 +41,11 @@ export default function App() {
 
   function genMonths() {
     const handleMonths: Array<string> = [];
+    const previousMonth = moment(currentDate).subtract(1, "month").format();
 
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 8; i++) {
       handleMonths.push(
-        moment(currentDate).add(i, "month").format("MMMM YYYY")
+        moment(previousMonth).add(i, "month").format("MMMM YYYY")
       );
     }
 
