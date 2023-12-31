@@ -94,6 +94,7 @@ export default function AddSpentModal({ visible, toggleModal }: PropsType) {
                     }
                   }}
                   min={1}
+                  step={0.01}
                   required
                 />
               </div>
