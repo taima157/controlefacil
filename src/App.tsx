@@ -110,7 +110,13 @@ export default function App() {
 
           <div className="flex w-full h-80 overflow-y-auto">
             {monthlySpendList.length !== 0 ? (
-              <div className={`grid grid-cols-1 ${monthlySpendList.length <= 6 ? "md:grid-rows-3" : ""} md:grid-cols-2 gap-3 w-full`}>
+              <div
+                className={`grid grid-cols-1 ${
+                  monthlySpendList.length <= 3 ? "grid-rows-3" : ""
+                } ${
+                  monthlySpendList.length <= 6 ? "md:grid-rows-3" : ""
+                } md:grid-cols-2 gap-3 w-full`}
+              >
                 {monthlySpendList.map((spent) => {
                   return <SpentCard key={spent.id} spent={spent} />;
                 })}

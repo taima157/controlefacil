@@ -22,12 +22,12 @@ export default function AddSpentModal({ visible, toggleModal }: PropsType) {
   const [spent, setSpent] = useState<Spent>(initialSpentValues);
   const [initialInstallmentDate, setInitialInstallmentDate] =
     useState<string>("");
-  const [numberOfInstallment, setNumberOfInstallment] = useState<number>(1);
+  const [numberOfInstallment, setNumberOfInstallment] = useState<number>(0);
 
   function resetInputs() {
     setSpent(initialSpentValues);
     setInitialInstallmentDate("");
-    setNumberOfInstallment(1);
+    setNumberOfInstallment(0);
   }
 
   function handleToggleModal() {
@@ -117,7 +117,7 @@ export default function AddSpentModal({ visible, toggleModal }: PropsType) {
                 <option value="credit">Crédito</option>
               </select>
             </div>
-            <div className="w-full flex gap-2">
+            <div className="w-full flex items-center gap-2">
               <label htmlFor="always" className="font-semibold cursor-pointer">
                 Gasto fixo?
               </label>
@@ -173,10 +173,11 @@ export default function AddSpentModal({ visible, toggleModal }: PropsType) {
                     id="numberOfInstallment"
                     value={String(numberOfInstallment)}
                     onChange={(e) => {
-                      if (Number(e.target.value) >= 1) {
+                      if (Number(e.target.value) >= 0) {
                         setNumberOfInstallment(Number(e.target.value));
                       }
                     }}
+                    min={1}
                     disabled={spent.always}
                     required={spent.type !== "credit" || !spent.always}
                   />
