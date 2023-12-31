@@ -29,7 +29,7 @@ export default function AddSpentModal({ visible, toggleModal }: PropsType) {
     setSpent(initialSpentValues);
     setInitialInstallmentDate("");
     setNumberOfInstallment(0);
-    setPriceValue("0");
+    setPriceValue("");
   }
 
   function handleToggleModal() {
